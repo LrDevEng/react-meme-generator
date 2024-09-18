@@ -1,0 +1,48 @@
+.flexRow {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.flexColumn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.flexColumnBetween {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.flexChildHumble {
+  width: 35%;
+  margin: 10px;
+  background-color: green;
+}
+
+.flexChildGreedy {
+  margin: 10px;
+  flex: 1;
+  background-color: yellow;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.paddingBasic {
+  padding-left: 10px;
+}
+
+label {
+  margin-top: 10px;
+}
+
+button {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
