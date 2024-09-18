@@ -49,7 +49,23 @@ function MemeCreator() {
     setPreviewUrl(parseApiRequest(true));
   }
 
-  function downloadMeme() {}
+  // Callback function to download meme
+  function downloadMeme() {
+    fetch(parseApiRequest(false))
+      .then((res) => res.blob())
+      .then((blob) => {
+        console.log(blob);
+        const url = window.URL.createObjectURL(new Blob([blob]));
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = `${currentMemeId}.png`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        window.URL.revokeObjectURL(url);
+      })
+      .catch((error) => console.log(error));
+  }
 
   // Parsers
   function parseApiRequest(preview) {
@@ -57,6 +73,8 @@ function MemeCreator() {
       const previewURL = 'https://api.memegen.link/images/preview.jpg';
       const requestUrl = `${previewURL}?template=${currentMemeId}&lines[]=${topText}&lines[]=${bottomText}`;
       return requestUrl;
+    } else {
+      return `https://api.memegen.link/images/${currentMemeId}/${topText}/${bottomText}.png`;
     }
   }
 
