@@ -1,9 +1,9 @@
 import styles from './MemeStyle.module.css';
 
-function MemePreview() {
+function MemePreview(props) {
   return (
     <div className={styles.flexChildGreedy}>
-      <img src={''} alt={'meme'} />
+      <img src={props.src} alt="Meme" data-test-id="meme-image" />
     </div>
   );
 }

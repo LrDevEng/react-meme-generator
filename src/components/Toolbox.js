@@ -1,10 +1,16 @@
-import { useState } from 'react';
 import styles from './MemeStyle.module.css';
 
-function Toolbox() {
-  const [topText, setTopText] = useState('');
-  const [bottomText, setBottomText] = useState('');
-
+function Toolbox({
+  memeTemplate,
+  setMemeTemplate,
+  topText,
+  setTopText,
+  bottomText,
+  setBottomText,
+  generateMemePreview,
+  downloadMeme,
+  templateIds,
+}) {
   return (
     <div className={styles.flexChildHumble}>
       <div className={styles.flexColumnBetween}>
@@ -16,7 +22,25 @@ function Toolbox() {
         >
           <h1>Meme Generator</h1>
           <label htmlFor="memeTemplate">Meme template</label>
-          <input id="memeTemplate" />
+          <input
+            id="memeTemplate"
+            list="templates"
+            value={memeTemplate}
+            onChange={(event) => {
+              setMemeTemplate(event.currentTarget.value);
+            }}
+            onFocus={() => {
+              setMemeTemplate('');
+            }}
+            onBlur={() => {
+              generateMemePreview();
+            }}
+          />
+          {/*<datalist id="templates">
+            {templateIds.map((id) => {
+              return <option key={`template-${id}`}>{id}</option>;
+            })}
+          </datalist>*/}
           <label htmlFor="topText">Top text</label>
           <input
             id="topText"
@@ -25,19 +49,17 @@ function Toolbox() {
               setTopText(event.currentTarget.value);
             }}
           />
-          <label
-            htmlFor="bottomText"
+          <label htmlFor="bottomText">Bottom text</label>
+          <input
+            id="bottomText"
             value={bottomText}
             onChange={(event) => {
               setBottomText(event.currentTarget.value);
             }}
-          >
-            Bottom text
-          </label>
-          <input id="bottomText" />
-          <button>Generate</button>
+          />
+          <button onClick={generateMemePreview}>Generate</button>
         </form>
-        <button>Download</button>
+        <button onClick={downloadMeme}>Download</button>
       </div>
     </div>
   );
