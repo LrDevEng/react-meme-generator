@@ -89,7 +89,7 @@ function MemeCreator() {
   // }
 
   function encodeToUrl(text) {
-    if (text.length === 0) return '_';
+    if (text.length === 0) return '+';
     return text.replaceAll(' ', '+');
   }
 
