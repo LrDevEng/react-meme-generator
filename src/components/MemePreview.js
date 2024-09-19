@@ -1,5 +1,6 @@
 import styles from './MemeStyle.module.css';
 
+// Component containing preview of meme
 function MemePreview(props) {
   return (
     <div className={styles.flexChildGreedy}>

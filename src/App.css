@@ -1,3 +1,12 @@
+:root {
+  --blue-100: #0e269e;
+  --blue-200: #4e8bc4;
+  --blue-300: #96cbfc;
+  --blue-400: #c2e1fc;
+  --pink-100: #ff99be;
+  --pink-200: #ffc2d9;
+}
+
 .App {
   height: 100vh;
   display: flex;
@@ -10,7 +19,6 @@
 .App-main {
   height: 100%;
   width: 100%;
-  background-color: aqua;
 }
 
 .App-header {

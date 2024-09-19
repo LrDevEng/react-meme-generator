@@ -1,5 +1,6 @@
 import styles from './MemeStyle.module.css';
 
+// Component containing interactive elements
 function Toolbox({
   memeTemplate,
   setMemeTemplate,
@@ -9,7 +10,7 @@ function Toolbox({
   setBottomText,
   generateMemePreview,
   downloadMeme,
-  templateIds,
+  templates,
 }) {
   return (
     <div className={styles.flexChildHumble}>
@@ -36,11 +37,15 @@ function Toolbox({
               generateMemePreview();
             }}
           />
-          {/*<datalist id="templates">
-            {templateIds.map((id) => {
-              return <option key={`template-${id}`}>{id}</option>;
+          <datalist id="templates">
+            {templates.map((template) => {
+              return (
+                <option key={`template-${template.id}-${template.blank}`}>
+                  {template.id}
+                </option>
+              );
             })}
-          </datalist>*/}
+          </datalist>
           <label htmlFor="topText">Top text</label>
           <input
             id="topText"
@@ -57,7 +62,9 @@ function Toolbox({
               setBottomText(event.currentTarget.value);
             }}
           />
-          <button onClick={generateMemePreview}>Generate</button>
+          <button onClick={generateMemePreview} data-test-id="generate-meme">
+            Generate
+          </button>
         </form>
         <button onClick={downloadMeme}>Download</button>
       </div>

@@ -25,8 +25,8 @@ function MemeCreator() {
   const [templates, setTemplates] = useState([initalTemplate]);
 
   // State to hold values of input fields of form
-  const [topText, setTopText] = useState('Hello');
-  const [bottomText, setBottomText] = useState('its me ;)');
+  const [topText, setTopText] = useState('');
+  const [bottomText, setBottomText] = useState('');
   const [currentMemeId, setCurrentMemeId] = useState(templates[0].id);
 
   // State to hold currently requested url
@@ -45,8 +45,10 @@ function MemeCreator() {
 
   // Callback function to generate meme
   function generateMemePreview() {
-    console.log(`Updating current url. ${currentMemeId}`);
     setPreviewUrl(parseApiRequest(true));
+    console.log(
+      `Updating current url. id: ${currentMemeId}   url: ${previewUrl}`,
+    );
   }
 
   // Callback function to download meme
@@ -89,9 +91,7 @@ function MemeCreator() {
         setBottomText={setBottomText}
         generateMemePreview={generateMemePreview}
         downloadMeme={downloadMeme}
-        templateIds={templates.map((template) => {
-          return template.id;
-        })}
+        templates={templates}
       />
       <MemePreview src={previewUrl} />
     </div>
