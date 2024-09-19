@@ -69,25 +69,13 @@ function MemeCreator() {
       .catch((error) => console.log(error));
   }
 
-  // Parsers
-  // function parseApiRequest(preview) {
-  //   if (preview) {
-  //     const previewURL = 'https://api.memegen.link/images/preview.jpg';
-  //     const requestUrl = `${previewURL}?template=${currentMemeId}&lines[]=${encodeToUrl(topText)}&lines[]=${encodeToUrl(bottomText)}`;
-  //     return requestUrl;
-  //   } else {
-  //     return `https://api.memegen.link/images/${currentMemeId}/${encodeToUrl(topText)}/${encodeToUrl(bottomText)}.png`;
-  //   }
-  // }
-
-  function parseApiRequest(preview) {
-    if (preview) {
-      return `https://api.memegen.link/images/${currentMemeId}/${encodeToUrl(topText)}/${encodeToUrl(bottomText)}.png`;
-    } else {
-      return `https://api.memegen.link/images/${currentMemeId}/${encodeToUrl(topText)}/${encodeToUrl(bottomText)}.png`;
-    }
+  // Parsing api request
+  function parseApiRequest() {
+    return `https://api.memegen.link/images/${currentMemeId}/${encodeToUrl(topText)}/${encodeToUrl(bottomText)}.png`;
   }
 
+  // Encoding text to url
+  // Replacing whitspaces with '_'
   function encodeToUrl(text) {
     if (text.length === 0) return '_';
     return text.replaceAll(' ', '_');
