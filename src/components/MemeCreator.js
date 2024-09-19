@@ -90,7 +90,7 @@ function MemeCreator() {
 
   function encodeToUrl(text) {
     if (text.length === 0) return '_';
-    return text.replaceAll(' ', '_');
+    return text.replaceAll(' ', '+');
   }
 
   return (
