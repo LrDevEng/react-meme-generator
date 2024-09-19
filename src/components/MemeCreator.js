@@ -30,7 +30,7 @@ function MemeCreator() {
   const [currentMemeId, setCurrentMemeId] = useState(templates[0].id);
 
   // State to hold currently requested url
-  const [previewUrl, setPreviewUrl] = useState(parseApiRequest(true));
+  const [previewUrl, setPreviewUrl] = useState(parseApiRequest());
 
   // Fetch templates from API
   useEffect(() => {
@@ -45,7 +45,7 @@ function MemeCreator() {
 
   // Callback function to generate meme
   function generateMemePreview() {
-    setPreviewUrl(parseApiRequest(true));
+    setPreviewUrl(parseApiRequest());
     console.log(
       `Updating current url. id: ${currentMemeId}   url: ${previewUrl}`,
     );
@@ -53,7 +53,7 @@ function MemeCreator() {
 
   // Callback function to download meme
   function downloadMeme() {
-    fetch(parseApiRequest(false))
+    fetch(parseApiRequest())
       .then((res) => res.blob())
       .then((blob) => {
         console.log(blob);
@@ -74,11 +74,19 @@ function MemeCreator() {
     return `https://api.memegen.link/images/${currentMemeId}/${encodeToUrl(topText)}/${encodeToUrl(bottomText)}.png`;
   }
 
-  // Encoding text to url
-  // Replacing whitspaces with '_'
+  // Text to url encoding
   function encodeToUrl(text) {
     if (text.length === 0) return '_';
-    return text.replaceAll(' ', '_');
+    return text
+      .replaceAll(' ', '_')
+      .replaceAll('?', '~q')
+      .replaceAll('&', '~a')
+      .replaceAll('%', '~p')
+      .replaceAll('#', '~h')
+      .replaceAll('/', '~s')
+      .replaceAll('\\', '~b')
+      .replaceAll('<', '~l')
+      .replaceAll('>', '~g');
   }
 
   return (
