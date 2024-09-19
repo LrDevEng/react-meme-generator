@@ -70,27 +70,27 @@ function MemeCreator() {
   }
 
   // Parsers
+  // function parseApiRequest(preview) {
+  //   if (preview) {
+  //     const previewURL = 'https://api.memegen.link/images/preview.jpg';
+  //     const requestUrl = `${previewURL}?template=${currentMemeId}&lines[]=${encodeToUrl(topText)}&lines[]=${encodeToUrl(bottomText)}`;
+  //     return requestUrl;
+  //   } else {
+  //     return `https://api.memegen.link/images/${currentMemeId}/${encodeToUrl(topText)}/${encodeToUrl(bottomText)}.png`;
+  //   }
+  // }
+
   function parseApiRequest(preview) {
     if (preview) {
-      const previewURL = 'https://api.memegen.link/images/preview.jpg';
-      const requestUrl = `${previewURL}?template=${currentMemeId}&lines[]=${encodeToUrl(topText)}&lines[]=${encodeToUrl(bottomText)}`;
-      return requestUrl;
+      return `https://api.memegen.link/images/${currentMemeId}/${encodeToUrl(topText)}/${encodeToUrl(bottomText)}.png`;
     } else {
       return `https://api.memegen.link/images/${currentMemeId}/${encodeToUrl(topText)}/${encodeToUrl(bottomText)}.png`;
     }
   }
 
-  // function parseApiRequest(preview) {
-  //   if (preview) {
-  //     return `https://api.memegen.link/images/${currentMemeId}/${encodeToUrl(topText)}/${encodeToUrl(bottomText)}.png`;
-  //   } else {
-  //     return `https://api.memegen.link/images/${currentMemeId}/${topText}/${bottomText}.png`;
-  //   }
-  // }
-
   function encodeToUrl(text) {
-    if (text.length === 0) return '+';
-    return text.replaceAll(' ', '+');
+    if (text.length === 0) return '_';
+    return text.replaceAll(' ', '_');
   }
 
   return (
